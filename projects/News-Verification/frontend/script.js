@@ -176,7 +176,7 @@ function checkForQuotes(postContent) {
     const matches = [];
     quotes.forEach(quote => {
         sourceData.forEach(source => {
-            if (source.content.includes(quote)) {
+            if (source.content.includes(quote) && source.verified) {
                 matches.push({
                     quote: quote,
                     source: source
