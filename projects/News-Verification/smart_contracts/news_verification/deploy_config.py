@@ -1,44 +1,34 @@
+import json
 import logging
+from pathlib import Path
 
 import algokit_utils
 
 logger = logging.getLogger(__name__)
 
 
-# define deployment behaviour based on supplied app spec
 def deploy() -> None:
-    from smart_contracts.artifacts.news_verification.news_verification_client import (
-        HelloArgs,
-        NewsVerificationFactory,
-    )
-
     algorand = algokit_utils.AlgorandClient.from_environment()
     deployer_ = algorand.account.from_environment("DEPLOYER")
 
-    factory = algorand.client.get_typed_app_factory(
-        NewsVerificationFactory, default_sender=deployer_.address
-    )
+    sources_dir = Path(__file__).parent.parent.parent / "sources"
+    for source_file in sources_dir.glob("*.json"):
+        with open(source_file, 'r') as f:
+            source_data = json.load(f)
 
-    app_client, result = factory.deploy(
-        on_update=algokit_utils.OnUpdate.AppendApp,
-        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
-    )
-
-    if result.operation_performed in [
-        algokit_utils.OperationPerformed.Create,
-        algokit_utils.OperationPerformed.Replace,
-    ]:
-        algorand.send.payment(
-            algokit_utils.PaymentParams(
-                amount=algokit_utils.AlgoAmount(algo=1),
+        content_str = source_data.get("content", "")
+        content_hash = hashlib.sha256(content_str.encode()).hexdigest()
+        
+        txn_result = algorand.send.asset_create(
+            algokit_utils.AssetCreateParams(
                 sender=deployer_.address,
-                receiver=app_client.app_address,
+                total=1, 
+                decimals=0,
+                default_frozen=False,
+                manager=deployer_.address,
+                reserve=deployer_.address,
+                unit_name=source_data.get("source", "SRC")[:8],  # Use source name
+                asset_name=source_data.get("title", "News Source")[:32],  # Use title
+                note=content_hash.encode(), 
             )
         )
-
-    name = "world"
-    response = app_client.send.hello(args=HelloArgs(name=name))
-    logger.info(
-        f"Called hello on {app_client.app_name} ({app_client.app_id}) "
-        f"with name={name}, received: {response.abi_return}"
-    )
