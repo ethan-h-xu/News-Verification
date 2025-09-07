@@ -22,7 +22,7 @@ body {
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #1DA1F2;
     color: white;
     padding: 2rem 1.5rem;
     text-align: center;
@@ -155,8 +155,13 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .loading.hidden {
@@ -181,23 +186,23 @@ body {
         margin: 0;
         box-shadow: none;
     }
-    
+
     .header {
         padding: 1.5rem 1rem;
     }
-    
+
     .header h1 {
         font-size: 1.5rem;
     }
-    
+
     .feed-container {
         padding: 0.8rem;
     }
-    
+
     .post {
         padding: 1.2rem;
     }
-    
+
     .post-title {
         font-size: 1.1rem;
     }
@@ -252,6 +257,7 @@ body {
         opacity: 0;
         transform: translateY(-20px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -387,22 +393,22 @@ body {
     .popup-overlay {
         padding: 0.5rem;
     }
-    
+
     .popup {
         max-height: 90vh;
     }
-    
+
     .popup-header,
     .popup-body,
     .popup-footer {
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    
+
     .source-match {
         padding: 0.8rem;
     }
-    
+
     .source-match h4 {
         font-size: 1rem;
     }
