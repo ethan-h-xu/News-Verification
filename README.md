@@ -1,22 +1,20 @@
 # News-Verification
 
-Welcome to your new AlgoKit project!
+This is my proof of concept of news verification through traceable and immutable information by utilizing the AlgoRand blockchain. 
+This project was created and pitched for the EasyA x Algorand hackathon hosted at Harvard University.
 
-This is your workspace root. A `workspace` in AlgoKit is an orchestrated collection of standalone projects (backends, smart contracts, frontend apps and etc).
+# Demonstration
+##Example Social Media Feed
+<img width="898" height="1391" alt="image" src="https://github.com/user-attachments/assets/c6f56e86-d655-4775-8d53-71d690907b5e" />
 
-By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
+##Verified Source Found
+<img width="902" height="1396" alt="image" src="https://github.com/user-attachments/assets/0541200c-ae72-4b34-be4d-b588d3500728" />
 
-## Getting Started
+##No Source Found
+<img width="891" height="1389" alt="image" src="https://github.com/user-attachments/assets/5021c3fd-e2ee-4f1a-b288-e8a78157178e" />
 
-To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
+#Next Step
+1. Focus on scalability with storing information on-chain
+2. Utilize machine learning to detect sources and quotes when a quotation isn't used.
+3. Develop an image database to check sources of images used too
 
-To learn more about algokit, visit [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md).
-
-### GitHub Codespaces
-
-To get started execute:
-
-1. `algokit generate devcontainer` - invoking this command from the root of this repository will create a `devcontainer.json` file with all the configuration needed to run this project in a GitHub codespace. [Run the repository inside a codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) to get started.
-2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
-
-Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).
